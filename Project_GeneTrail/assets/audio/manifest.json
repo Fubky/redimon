@@ -1,0 +1,122 @@
+[
+  {
+    "file": "title.wav",
+    "seconds": 41.739,
+    "peak": 0.3424,
+    "rms": 0.0779
+  },
+  {
+    "file": "town.wav",
+    "seconds": 36.923,
+    "peak": 0.3209,
+    "rms": 0.0672
+  },
+  {
+    "file": "forest.wav",
+    "seconds": 34.286,
+    "peak": 0.3516,
+    "rms": 0.0831
+  },
+  {
+    "file": "mountain.wav",
+    "seconds": 39.184,
+    "peak": 0.3431,
+    "rms": 0.0805
+  },
+  {
+    "file": "island.wav",
+    "seconds": 35.556,
+    "peak": 0.3266,
+    "rms": 0.0637
+  },
+  {
+    "file": "volcano.wav",
+    "seconds": 32.542,
+    "peak": 0.3365,
+    "rms": 0.0834
+  },
+  {
+    "file": "cave.wav",
+    "seconds": 45.714,
+    "peak": 0.3211,
+    "rms": 0.0635
+  },
+  {
+    "file": "battle.wav",
+    "seconds": 27.826,
+    "peak": 0.3199,
+    "rms": 0.0776
+  },
+  {
+    "file": "sfx_ui.wav",
+    "seconds": 0.63,
+    "peak": 0.4258,
+    "rms": 0.0818
+  },
+  {
+    "file": "sfx_step.wav",
+    "seconds": 0.52,
+    "peak": 0.2192,
+    "rms": 0.0471
+  },
+  {
+    "file": "sfx_hit.wav",
+    "seconds": 0.63,
+    "peak": 0.3149,
+    "rms": 0.0661
+  },
+  {
+    "file": "sfx_cast.wav",
+    "seconds": 0.84,
+    "peak": 0.3776,
+    "rms": 0.0968
+  },
+  {
+    "file": "sfx_heal.wav",
+    "seconds": 1.01,
+    "peak": 0.45,
+    "rms": 0.1046
+  },
+  {
+    "file": "sfx_delay.wav",
+    "seconds": 0.93,
+    "peak": 0.4188,
+    "rms": 0.1057
+  },
+  {
+    "file": "sfx_battle_start.wav",
+    "seconds": 1.09,
+    "peak": 0.4352,
+    "rms": 0.1376
+  },
+  {
+    "file": "sfx_defeat.wav",
+    "seconds": 0.99,
+    "peak": 0.3851,
+    "rms": 0.1256
+  },
+  {
+    "file": "sfx_victory.wav",
+    "seconds": 1.53,
+    "peak": 0.415,
+    "rms": 0.1107
+  },
+  {
+    "file": "sfx_level_up.wav",
+    "seconds": 1.29,
+    "peak": 0.4269,
+    "rms": 0.1191
+  },
+  {
+    "file": "sfx_save.wav",
+    "seconds": 0.81,
+    "peak": 0.4133,
+    "rms": 0.0971
+  },
+  {
+    "file": "sfx_recruit.wav",
+    "seconds": 1.2,
+    "peak": 0.4488,
+    "rms": 0.1414
+  }
+]

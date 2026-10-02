@@ -1,0 +1,82 @@
+WorkerThreadPool: 16 threads, 4 max low-priority.
+Godot Engine v4.7.2.stable.steam.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/test_controls.gd remapped: res://tests/test_controls.gd
+Completed load for: 'res://tests/test_controls.gd' remapped 'res://tests/test_controls.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded builtin CA certificates
+Loading resource: res://scenes/main.tscn remapped: res://scenes/main.tscn
+Loading resource: res://scripts/main.gd remapped: res://scripts/main.gd
+Completed load for: 'res://scripts/main.gd' remapped 'res://scripts/main.gd' at thread -1
+Completed load for: 'res://scenes/main.tscn' remapped 'res://scenes/main.tscn' at thread -1
+Loading resource: res://assets/home.svg remapped: res://assets/home.svg
+Loading resource: res://.godot/imported/home.svg-b193732e149cd17075837b1e28133bc5.ctex remapped: res://.godot/imported/home.svg-b193732e149cd17075837b1e28133bc5.ctex
+Completed load for: 'res://assets/home.svg' remapped 'res://assets/home.svg' at thread -1
+Loading resource: res://assets/shop.svg remapped: res://assets/shop.svg
+Loading resource: res://.godot/imported/shop.svg-ef97f7a29002cc9af0948ef8d7ad3f99.ctex remapped: res://.godot/imported/shop.svg-ef97f7a29002cc9af0948ef8d7ad3f99.ctex
+Completed load for: 'res://assets/shop.svg' remapped 'res://assets/shop.svg' at thread -1
+Loading resource: res://assets/nursery.svg remapped: res://assets/nursery.svg
+Loading resource: res://.godot/imported/nursery.svg-dc47e672f41fc60ddac6b7fcb00aa49f.ctex remapped: res://.godot/imported/nursery.svg-dc47e672f41fc60ddac6b7fcb00aa49f.ctex
+Completed load for: 'res://assets/nursery.svg' remapped 'res://assets/nursery.svg' at thread -1
+Loading resource: res://assets/storage.svg remapped: res://assets/storage.svg
+Loading resource: res://.godot/imported/storage.svg-9446dea81eb90eac5f4bd80dbf677fe3.ctex remapped: res://.godot/imported/storage.svg-9446dea81eb90eac5f4bd80dbf677fe3.ctex
+Completed load for: 'res://assets/storage.svg' remapped 'res://assets/storage.svg' at thread -1
+Loading resource: res://assets/tiles_town.svg remapped: res://assets/tiles_town.svg
+Loading resource: res://.godot/imported/tiles_town.svg-59508b21c361f596931a40bf99320467.ctex remapped: res://.godot/imported/tiles_town.svg-59508b21c361f596931a40bf99320467.ctex
+Completed load for: 'res://assets/tiles_town.svg' remapped 'res://assets/tiles_town.svg' at thread -1
+Loading resource: res://assets/audio/town.wav remapped: res://assets/audio/town.wav
+Loading resource: res://.godot/imported/town.wav-aa2d170089e07b6376f77b7617d8059e.sample remapped: res://.godot/imported/town.wav-aa2d170089e07b6376f77b7617d8059e.sample
+Completed load for: 'res://assets/audio/town.wav' remapped 'res://assets/audio/town.wav' at thread -1
+Loading resource: res://assets/field_volcano.svg remapped: res://assets/field_volcano.svg
+Loading resource: res://.godot/imported/field_volcano.svg-3a2944f95e7796a99d14678d475855ba.ctex remapped: res://.godot/imported/field_volcano.svg-3a2944f95e7796a99d14678d475855ba.ctex
+Completed load for: 'res://assets/field_volcano.svg' remapped 'res://assets/field_volcano.svg' at thread -1
+Loading resource: res://assets/audio/volcano.wav remapped: res://assets/audio/volcano.wav
+Loading resource: res://.godot/imported/volcano.wav-00761dcf88a8b884a7885234a186bf35.sample remapped: res://.godot/imported/volcano.wav-00761dcf88a8b884a7885234a186bf35.sample
+Completed load for: 'res://assets/audio/volcano.wav' remapped 'res://assets/audio/volcano.wav' at thread -1
+Loading resource: res://assets/field_forest.svg remapped: res://assets/field_forest.svg
+Loading resource: res://.godot/imported/field_forest.svg-111e53e542e67e5bee42bc570712113e.ctex remapped: res://.godot/imported/field_forest.svg-111e53e542e67e5bee42bc570712113e.ctex
+Completed load for: 'res://assets/field_forest.svg' remapped 'res://assets/field_forest.svg' at thread -1
+Loading resource: res://assets/audio/battle.wav remapped: res://assets/audio/battle.wav
+Loading resource: res://.godot/imported/battle.wav-591619e226ad72dffbfe813ea62f286f.sample remapped: res://.godot/imported/battle.wav-591619e226ad72dffbfe813ea62f286f.sample
+Completed load for: 'res://assets/audio/battle.wav' remapped 'res://assets/audio/battle.wav' at thread -1
+Loading resource: res://assets/audio/sfx_battle_start.wav remapped: res://assets/audio/sfx_battle_start.wav
+Loading resource: res://.godot/imported/sfx_battle_start.wav-5b14672a89575e471ca4a8746ce1ef25.sample remapped: res://.godot/imported/sfx_battle_start.wav-5b14672a89575e471ca4a8746ce1ef25.sample
+Completed load for: 'res://assets/audio/sfx_battle_start.wav' remapped 'res://assets/audio/sfx_battle_start.wav' at thread -1
+Loading resource: res://assets/audio/sfx_step.wav remapped: res://assets/audio/sfx_step.wav
+Loading resource: res://.godot/imported/sfx_step.wav-efdd731478679e0c9a516b4f3d9957be.sample remapped: res://.godot/imported/sfx_step.wav-efdd731478679e0c9a516b4f3d9957be.sample
+Completed load for: 'res://assets/audio/sfx_step.wav' remapped 'res://assets/audio/sfx_step.wav' at thread -1
+Loading resource: res://assets/tiles_town.svg remapped: res://assets/tiles_town.svg
+Loading resource: res://.godot/imported/tiles_town.svg-59508b21c361f596931a40bf99320467.ctex remapped: res://.godot/imported/tiles_town.svg-59508b21c361f596931a40bf99320467.ctex
+Completed load for: 'res://assets/tiles_town.svg' remapped 'res://assets/tiles_town.svg' at thread -1
+CONTROL_TESTS: 444 passed; 0 failed.
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamPlaybackWAV:9223372085257045468 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372080861414955 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372080811083309 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372075475928642 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372075425596996 - Reference count: 2
+Leaked instance: AudioStreamPlaybackWAV:9223372083277334332 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372083461883709 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372083227002686 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372083411552065 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372084753729498 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372084770506715 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372084703397852 - Reference count: 3
+Leaked instance: AudioStreamPlaybackWAV:9223372084787283933 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/audio/town.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/volcano.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/battle.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/sfx_battle_start.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/sfx_step.wav (AudioStreamWAV)
+Orphan StringName: Effects (static: 0, total: 4)
+Orphan StringName: Music (static: 0, total: 6)
+StringName: 2 unclaimed string names at exit.

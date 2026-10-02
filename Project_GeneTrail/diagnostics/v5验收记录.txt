@@ -1,0 +1,6 @@
+最终验证：2026-10-01，Godot 4.7.2。
+规则 4907、UI 103、控制 444、遗传技能 557、战斗深度 3572，共 9583 通过，0 失败。
+Windows 发布版：build/windows/GeneTrail.exe 已重新导出。
+发布版标题页与战斗页均实际运行退出 0，截图保存于 screenshots/release_title_v5.png 和 release_battle_v5.png。
+新图像资产及原始提示词记录：assets/art_v5/README.md。使用内置 image_gen 工具。
+未删除正式存档。长时间数值平衡仍需持续实玩验证。

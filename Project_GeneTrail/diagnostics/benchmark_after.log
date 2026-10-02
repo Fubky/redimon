@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.steam.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.14761 Core Profile Forward-Compatible Context 21.30.02.19 30.0.13002.19003 - Compatibility - Using Device: ATI Technologies Inc. - AMD Radeon(TM) Graphics
+
+BENCH town frame_ms mean=7.91 p95=11.25
+BENCH battle frame_ms mean=5.31 p95=8.82
+BENCH unit_queries_2000_ms=8.899
+BENCH unchanged_refresh_100_ms=7.333

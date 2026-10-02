@@ -1,0 +1,58 @@
+WorkerThreadPool: 16 threads, 4 max low-priority.
+Godot Engine v4.7.2.stable.steam.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/test_creature_assembly.gd remapped: res://tests/test_creature_assembly.gd
+Completed load for: 'res://tests/test_creature_assembly.gd' remapped 'res://tests/test_creature_assembly.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded builtin CA certificates
+Loading resource: res://scenes/main.tscn remapped: res://scenes/main.tscn
+Loading resource: res://scripts/main.gd remapped: res://scripts/main.gd
+Loading resource: res://assets/art_v7/atmosphere.gdshader remapped: res://assets/art_v7/atmosphere.gdshader
+Completed load for: 'res://assets/art_v7/atmosphere.gdshader' remapped 'res://assets/art_v7/atmosphere.gdshader' at thread -1
+Loading resource: res://assets/art_v7/ground.png remapped: res://assets/art_v7/ground.png
+Loading resource: res://.godot/imported/ground.png-159bd974e295b5dc33b2cd337c441bcf.ctex remapped: res://.godot/imported/ground.png-159bd974e295b5dc33b2cd337c441bcf.ctex
+Completed load for: 'res://assets/art_v7/ground.png' remapped 'res://assets/art_v7/ground.png' at thread -1
+Loading resource: res://assets/art_v7/props.png remapped: res://assets/art_v7/props.png
+Loading resource: res://.godot/imported/props.png-35623147afd006d7c71bd5d86c30c8eb.ctex remapped: res://.godot/imported/props.png-35623147afd006d7c71bd5d86c30c8eb.ctex
+Completed load for: 'res://assets/art_v7/props.png' remapped 'res://assets/art_v7/props.png' at thread -1
+Loading resource: res://assets/art_v7/buildings.png remapped: res://assets/art_v7/buildings.png
+Loading resource: res://.godot/imported/buildings.png-032a1ad264228760cadef34d6d0a90b4.ctex remapped: res://.godot/imported/buildings.png-032a1ad264228760cadef34d6d0a90b4.ctex
+Completed load for: 'res://assets/art_v7/buildings.png' remapped 'res://assets/art_v7/buildings.png' at thread -1
+Loading resource: res://assets/art_v7/cliffs.png remapped: res://assets/art_v7/cliffs.png
+Loading resource: res://.godot/imported/cliffs.png-d7b835a202ccc7666331299ee3752726.ctex remapped: res://.godot/imported/cliffs.png-d7b835a202ccc7666331299ee3752726.ctex
+Completed load for: 'res://assets/art_v7/cliffs.png' remapped 'res://assets/art_v7/cliffs.png' at thread -1
+Loading resource: res://assets/art_v7/details.png remapped: res://assets/art_v7/details.png
+Loading resource: res://.godot/imported/details.png-d7af91bc94ec88ce9a00d2b480c8b520.ctex remapped: res://.godot/imported/details.png-d7af91bc94ec88ce9a00d2b480c8b520.ctex
+Completed load for: 'res://assets/art_v7/details.png' remapped 'res://assets/art_v7/details.png' at thread -1
+Loading resource: res://assets/art_v7/title.png remapped: res://assets/art_v7/title.png
+Loading resource: res://.godot/imported/title.png-d147b2cab78e33b8fe1a2f280c0d8d1d.ctex remapped: res://.godot/imported/title.png-d147b2cab78e33b8fe1a2f280c0d8d1d.ctex
+Completed load for: 'res://assets/art_v7/title.png' remapped 'res://assets/art_v7/title.png' at thread -1
+Completed load for: 'res://scripts/main.gd' remapped 'res://scripts/main.gd' at thread -1
+Completed load for: 'res://scenes/main.tscn' remapped 'res://scenes/main.tscn' at thread -1
+Loading resource: res://assets/audio/town.wav remapped: res://assets/audio/town.wav
+Loading resource: res://.godot/imported/town.wav-aa2d170089e07b6376f77b7617d8059e.sample remapped: res://.godot/imported/town.wav-aa2d170089e07b6376f77b7617d8059e.sample
+Completed load for: 'res://assets/audio/town.wav' remapped 'res://assets/audio/town.wav' at thread -1
+Loading resource: res://assets/audio/sfx_ui.wav remapped: res://assets/audio/sfx_ui.wav
+Loading resource: res://.godot/imported/sfx_ui.wav-b46aa408f86eb0708d43b02571326dfc.sample remapped: res://.godot/imported/sfx_ui.wav-b46aa408f86eb0708d43b02571326dfc.sample
+Completed load for: 'res://assets/audio/sfx_ui.wav' remapped 'res://assets/audio/sfx_ui.wav' at thread -1
+ASSEMBLY_TESTS: 301 passed; 0 failed.
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamPlaybackWAV:9223372126998760182 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372126948428536 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372134078745720 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372134095522937 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372134028414074 - Reference count: 2
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/audio/town.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/sfx_ui.wav (AudioStreamWAV)
+Orphan StringName: Effects (static: 0, total: 2)
+Orphan StringName: Music (static: 0, total: 1)
+StringName: 2 unclaimed string names at exit.

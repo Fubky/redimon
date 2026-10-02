@@ -1,0 +1,186 @@
+extends SceneTree
+var passed=0
+var failed=0
+
+func _initialize() -> void: call_deferred("run")
+func check(ok: bool, description: String) -> void:
+	if ok: passed+=1
+	else: failed+=1; push_error("ASSEMBLY FAIL: "+description)
+
+func part(rig: Dictionary, slot: String) -> Dictionary:
+	for p in rig.parts:
+		if p.joint==slot: return p
+	return {}
+
+func silhouette(rig: Dictionary) -> Array:
+	return [rig.parts.map(func(p): return [p.id,p.size]),rig.body_scale,rig.leg_scale,rig.scale,rig.head_offset]
+
+func controls(node: Node, kind: String, result: Array) -> void:
+	if node.is_class(kind): result.append(node)
+	for child in node.get_children(): controls(child,kind,result)
+
+func run() -> void:
+	var u=CreatureWorkshop.sample(0,0)
+	check(CreaturePartLibrary.SVG.size()==239,"independent body-part library is complete")
+	for id in CreaturePartLibrary.SVG:
+		var texture=CreatureAssembly.part_texture(id,u.genes)
+		var image=texture.get_image()
+		check(image.detect_alpha()!=Image.ALPHA_NONE and image.get_pixel(0,0).a==0,"part has transparent margins: "+id)
+		check(image.get_used_rect().get_area()>(12 if id.begins_with("mouth_") else 100),"part contains visible geometry: "+id)
+	for species in range(5):
+		var forms=[]
+		for preset in range(4):
+			u=CreatureWorkshop.sample(species,preset)
+			var rig=CreatureAssembly.build(u)
+			check(rig.parts.size()>=10,"every actor has independently attached parts")
+			check(CreatureAssembly.build(u)==rig,"unchanged genes reuse assembled rig")
+			var slots=rig.parts.map(func(p): return p.joint)
+			check(slots.has("head") and slots.has("tail") and slots.has("ear_near") and slots.has("eyes") and slots.has("mouth"),"head, eyes, mouth, ears and tail are independent")
+			check(slots.has("fore_near") if species!=4 else not slots.has("fore_near"),"limb layout follows quadruped or serpent anatomy")
+			forms.append(hash(silhouette(rig)))
+		check(forms[0]!=forms[1] and forms[1]!=forms[2] and forms[2]!=forms[3],"same-color silhouettes vary within each species")
+	# Hold every allele constant: species must change anatomy, not only the palette.
+	var same_genes=CreatureWorkshop.sample(0,1).genes.duplicate(true)
+	var anatomy=[]
+	var body_ids=[]; var eye_ids=[]
+	for species in range(5):
+		var specimen=UnitData.new(); specimen.species=species; specimen.genes=same_genes.duplicate(true)
+		var form=CreatureAssembly.build(specimen)
+		body_ids.append(part(form,"body").id); eye_ids.append(part(form,"eyes").id)
+		anatomy.append(hash([form.body_scale,form.leg_scale,form.head_offset,form.form.skull,form.form.front]))
+		check(part(form,"head").id.begins_with("head_%d_"%species) and part(form,"tail").id.begins_with("tail_%d_"%species),"species uses its own skull and tail")
+		for state in ["idle","walk","cast","attack","hurt"]:
+			var frame=CreatureAssembly.pose(form,0.8,{"state":state,"amount":1.0})
+			for piece in form.parts: check(frame.has(piece.joint),"every visible part has an animated socket")
+			var ear_local: Transform2D=frame.head.affine_inverse()*frame.ear_near
+			check(ear_local.origin.is_equal_approx(form.form.ear_near),"species-specific ear attachment follows the skull")
+			if species==4:
+				var head_local: Transform2D=frame.neck.affine_inverse()*frame.head
+				check(head_local.origin.is_equal_approx(form.head_offset),"serpent head stays attached to articulating neck")
+			if species==2: check(frame.fore_near.origin.y<frame.hind_near.origin.y-8,"mouse holds forepaws above hind feet")
+		if species!=4: check(part(form,"fore_near").id!=part(form,"hind_near").id,"front and back limbs have distinct anatomy")
+		var eye_states=[]; var mouth_states=[]
+		for mood in CreatureAssembly.EXPRESSIONS:
+			var texture_pair=CreatureAssembly.facial_textures(form,0,{"expression":mood,"blink":false})
+			eye_states.append(hash(texture_pair.eyes.get_image().get_data()))
+			mouth_states.append(hash(texture_pair.mouth.get_image().get_data()))
+		check(eye_states.all(func(h): return eye_states.count(h)==1),"six distinct eye expressions for every species")
+		check(mouth_states.all(func(h): return mouth_states.count(h)==1),"six distinct mouth expressions for every species")
+		var blinking=CreatureAssembly.facial_textures(form,4,{"state":"idle","face_time":5.34-species*0.71})
+		check(blinking.eyes==form.expressions.sleep.eyes and blinking.mouth==form.expressions.calm.mouth,"blink uses closed lids and preserves the current mouth")
+		var walking_blink=CreatureAssembly.facial_textures(form,500,{"state":"walk","face_time":5.34-species*0.71})
+		check(walking_blink.eyes==blinking.eyes,"blink timing is independent of gait speed")
+		var normal=CreatureAssembly.pose(form,0,{"state":"idle"})
+		check(normal.head==normal.eyes and normal.head==normal.mouth,"eyes and mouth share the head transform without scaling the eyeballs")
+	check(body_ids.size()==5 and body_ids.all(func(id): return body_ids.count(id)==1),"all five species use distinct torso geometry")
+	check(eye_ids.all(func(id): return eye_ids.count(id)==1),"eye sockets and eyelids match each species skull")
+	check(anatomy.all(func(id): return anatomy.count(id)==1),"identical genes produce five different skeletal proportions")
+	# New organs must survive all inherited coats and continue following live animation.
+	for species in range(5):
+		var specimen=BotanicalWorkshop.specimen(species)
+		var organs=[]
+		for coat in range(4):
+			specimen.genes.coat=[coat,coat]
+			var form=CreatureAssembly.build(specimen)
+			organs.append(hash(part(form,"growth").texture.get_image().get_data()))
+			check(not part(form,"growth").is_empty() and not part(form,"charm").is_empty(),"plant organ and flower remain separate from the animal")
+			for state in ["idle","walk","cast","hurt","faint"]:
+				var frame=CreatureAssembly.pose(form,0.9,{"state":state,"amount":1.0})
+				check(frame.growth.origin.is_finite() and frame.charm.origin.is_finite(),"inherited foliage has a valid joint during every action")
+		check(organs.all(func(h): return organs.count(h)==1),"all four inherited coats give visually different plant silhouettes")
+		var form=CreatureAssembly.build(specimen)
+		check(CreatureAssembly.pose(form,0.2).growth!=CreatureAssembly.pose(form,1.3).growth,"foliage moves with its host body")
+	for pair in [["idle","calm"],["walk","calm"],["cast","focus"],["attack","focus"],["heal","happy"],["hurt","hurt"],["faint","sleep"]]:
+		check(CreatureAssembly.face_expression({"state":pair[0]})==pair[1],"gameplay action selects the matching expression: "+pair[0])
+	check(CreatureAssembly.face_expression({"state":"cast","expression":"invalid"})=="focus","invalid preview expression falls back to the real action")
+	u=CreatureWorkshop.sample(0,0)
+	var before=CreatureAssembly.build(u)
+	u.genes.ears=[2,2]
+	var after=CreatureAssembly.build(u)
+	check(part(before,"ear_near").id!=part(after,"ear_near").id,"ear gene selects a different shape")
+	check(part(before,"head").texture==part(after,"head").texture and part(before,"body").texture==part(after,"body").texture,"ear mutation does not repaint unrelated parts")
+	for locus in ["face","tail","coat","body_a","body_b","height","bone","muscle","length"]:
+		u=CreatureWorkshop.sample(0,1)
+		u.genes[locus]=[0,0]; before=CreatureAssembly.build(u)
+		u.genes[locus]=[Genome.LIMITS[locus],Genome.LIMITS[locus]]; after=CreatureAssembly.build(u)
+		check(silhouette(before)!=silhouette(after),"structural gene changes part geometry: "+locus)
+	for locus in ["color","pattern","white","contrast","gloss","eyes","affinity"]:
+		u=CreatureWorkshop.sample(0,2)
+		u.genes[locus]=[0,0]; before=CreatureAssembly.build(u)
+		u.genes[locus]=[Genome.LIMITS[locus],Genome.LIMITS[locus]]; after=CreatureAssembly.build(u)
+		var hashes_before=before.parts.map(func(p): return hash(p.texture.get_image().get_data()))
+		var hashes_after=after.parts.map(func(p): return hash(p.texture.get_image().get_data()))
+		check(hashes_before!=hashes_after,"surface gene changes rendered part pixels: "+locus)
+	var rig=CreatureAssembly.build(u)
+	var idle=CreatureAssembly.pose(rig,0.7,{"state":"idle"})
+	var walk=CreatureAssembly.pose(rig,0.7,{"state":"walk"})
+	var cast=CreatureAssembly.pose(rig,0.7,{"state":"cast","amount":1.0})
+	check(idle.fore_near!=walk.fore_near and walk.fore_near!=cast.fore_near,"legs articulate for walking and casting")
+	check(not is_equal_approx(walk.fore_near.get_rotation(),walk.hind_near.get_rotation()),"front and back legs use alternating gait")
+	for pose in [idle,walk,cast]:
+		var local: Transform2D=pose.head.affine_inverse()*pose.ear_near
+		check(local.origin.is_equal_approx(rig.form.ear_near),"ear root stays attached when head moves")
+	check(CreatureAssembly.pose(rig,1.2,{"state":"idle"}).tail!=idle.tail,"tail articulates independently over time")
+	var builds=CreatureAssembly.texture_builds
+	for i in range(120):
+		CreatureAssembly.build(u); CreatureAssembly.pose(rig,i/30.0,{"state":"walk"})
+		CreatureAssembly.facial_textures(rig,i/30.0,{"expression":CreatureAssembly.EXPRESSIONS[i%6]})
+	check(CreatureAssembly.texture_builds==builds,"animation does not re-rasterize SVGs")
+	var recolored=CreatureWorkshop.clone(u); recolored.genes.color=[0,0]
+	var recolored_rig=CreatureAssembly.build(recolored)
+	check(recolored_rig.expressions.calm.eyes==rig.expressions.calm.eyes,"identical irises reuse eye textures across different body colors")
+	check(recolored_rig.expressions.happy.mouth==rig.expressions.happy.mouth,"mouth textures reuse across body colors")
+	var parent_a=u.genes.duplicate(true); var parent_b=u.genes.duplicate(true)
+	for locus in Genome.LIMITS:
+		parent_a[locus]=[0,Genome.LIMITS[locus]]; parent_b[locus]=[0,Genome.LIMITS[locus]]
+	var rng=RandomNumberGenerator.new(); rng.seed=8123
+	var offspring={}
+	for i in range(40):
+		var child=UnitData.new(); child.species=i%5
+		child.genes=Genome.inherit_genes(parent_a,parent_b,rng,0).genes
+		var baby=CreatureAssembly.build(child)
+		check(part(baby,"ear_near").id=="ear_%d_%d"%[child.species,Genome.express(child.genes,"ears")],"offspring ears follow inherited alleles")
+		offspring[hash(silhouette(baby))]=true
+	check(offspring.size()>20,"heterozygous parents produce varied anatomical combinations")
+	check(CreatureAssembly.rigs.size()<=CreatureAssembly.CACHE_LIMIT and CreatureAssembly.textures.size()<=CreatureAssembly.PART_CACHE_LIMIT,"both caches are bounded")
+	var app=load("res://scenes/main.tscn").instantiate(); root.add_child(app)
+	await process_frame
+	app.set_process(false); app.board.set_process(false)
+	var saved=app.game.party[0].genes.duplicate(true)
+	var botanical=BotanicalWorkshop.open_preview(app)
+	check(botanical.samples.size()==5,"botanical gallery shows five live assembled species")
+	check(botanical.samples.all(func(s): return s!=app.game.party[0]),"botanical gallery never reuses the player instance")
+	check(app.game.party[0].genes==saved,"botanical specimens preserve the player's genes")
+	var workshop=CreatureWorkshop.open_preview(app,app.game.party[0])
+	var sliders=[]; controls(workshop,"HSlider",sliders)
+	check(sliders.size()==16,"workshop exposes all continuous and categorical loci")
+	sliders[0].value=100 if sliders[0].value<100 else 0
+	check(workshop.unit.genes!=saved and app.game.party[0].genes==saved,"workshop edits a copy and preserves actual save genes")
+	var buttons=[]; controls(workshop,"Button",buttons)
+	for button in buttons:
+		if button.text=="行走": button.pressed.emit()
+	check(workshop.action=="walk","workshop can preview joint animation")
+	for button in buttons:
+		if button.text=="拼合 / 拆开部件": button.pressed.emit()
+	check(workshop.exploded,"workshop exposes the actual separated parts")
+	workshop=CreatureWorkshop.open_preview(app,app.game.party[0],false,true)
+	check(workshop.samples.size()==5,"species comparison shows all five species")
+	check(workshop.samples.all(func(s): return s.genes==workshop.samples[0].genes),"species comparison holds all genes and colors constant")
+	check(app.game.party[0].genes==saved,"species comparison never mutates the player's genes")
+	buttons.clear(); controls(workshop,"Button",buttons)
+	for button in buttons:
+		if button.text=="彩色 / 纯剪影": button.pressed.emit()
+	check(workshop.silhouettes,"species can be inspected without colors or markings")
+	var face_view=FaceWorkshop.open_preview(app,app.game.party[0])
+	check(face_view.samples.size()==5,"facial preview shows every species")
+	buttons.clear(); controls(face_view,"Button",buttons)
+	for button in buttons:
+		if button.text=="受击 / 惊讶 / 休息": button.pressed.emit()
+	check(face_view.group==1,"facial preview can switch reaction expressions")
+	var selectors=[]; controls(face_view,"OptionButton",selectors)
+	selectors[0].item_selected.emit(2)
+	check(face_view.samples.all(func(s): return Genome.express(s.genes,"face")==2),"face-shape selector updates all preview copies")
+	check(app.game.party[0].genes==saved,"facial preview does not mutate the real partner")
+	print("ASSEMBLY_TESTS: ",passed," passed; ",failed," failed.")
+	app.close_modal(); app.audio.shutdown(); await create_timer(0.12).timeout
+	quit(1 if failed else 0)

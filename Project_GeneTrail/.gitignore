@@ -1,0 +1,6 @@
+.godot/
+build/
+*.tmp
+diagnostics/appdata/
+diagnostics/*_test*.json*
+tools/templates/*.exe

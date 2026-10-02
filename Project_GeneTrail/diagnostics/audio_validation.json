@@ -1,0 +1,122 @@
+[
+  {
+    "name": "battle.wav",
+    "seconds": 27.826,
+    "rms": 0.0776,
+    "peak": 0.3199
+  },
+  {
+    "name": "cave.wav",
+    "seconds": 45.714,
+    "rms": 0.0635,
+    "peak": 0.3211
+  },
+  {
+    "name": "forest.wav",
+    "seconds": 34.286,
+    "rms": 0.083,
+    "peak": 0.3515
+  },
+  {
+    "name": "island.wav",
+    "seconds": 35.556,
+    "rms": 0.0637,
+    "peak": 0.3266
+  },
+  {
+    "name": "mountain.wav",
+    "seconds": 39.184,
+    "rms": 0.0805,
+    "peak": 0.3431
+  },
+  {
+    "name": "sfx_battle_start.wav",
+    "seconds": 1.09,
+    "rms": 0.1376,
+    "peak": 0.4352
+  },
+  {
+    "name": "sfx_cast.wav",
+    "seconds": 0.84,
+    "rms": 0.0968,
+    "peak": 0.3776
+  },
+  {
+    "name": "sfx_defeat.wav",
+    "seconds": 0.99,
+    "rms": 0.1256,
+    "peak": 0.3851
+  },
+  {
+    "name": "sfx_delay.wav",
+    "seconds": 0.93,
+    "rms": 0.1056,
+    "peak": 0.4187
+  },
+  {
+    "name": "sfx_heal.wav",
+    "seconds": 1.01,
+    "rms": 0.1046,
+    "peak": 0.45
+  },
+  {
+    "name": "sfx_hit.wav",
+    "seconds": 0.63,
+    "rms": 0.0661,
+    "peak": 0.3149
+  },
+  {
+    "name": "sfx_level_up.wav",
+    "seconds": 1.29,
+    "rms": 0.1191,
+    "peak": 0.4268
+  },
+  {
+    "name": "sfx_recruit.wav",
+    "seconds": 1.2,
+    "rms": 0.1414,
+    "peak": 0.4488
+  },
+  {
+    "name": "sfx_save.wav",
+    "seconds": 0.81,
+    "rms": 0.0971,
+    "peak": 0.4133
+  },
+  {
+    "name": "sfx_step.wav",
+    "seconds": 0.52,
+    "rms": 0.0471,
+    "peak": 0.2192
+  },
+  {
+    "name": "sfx_ui.wav",
+    "seconds": 0.63,
+    "rms": 0.0818,
+    "peak": 0.4258
+  },
+  {
+    "name": "sfx_victory.wav",
+    "seconds": 1.53,
+    "rms": 0.1106,
+    "peak": 0.415
+  },
+  {
+    "name": "title.wav",
+    "seconds": 41.739,
+    "rms": 0.0779,
+    "peak": 0.3424
+  },
+  {
+    "name": "town.wav",
+    "seconds": 36.923,
+    "rms": 0.0672,
+    "peak": 0.3209
+  },
+  {
+    "name": "volcano.wav",
+    "seconds": 32.542,
+    "rms": 0.0834,
+    "peak": 0.3365
+  }
+]
